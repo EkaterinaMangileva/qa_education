@@ -1,4 +1,5 @@
 from pages.elements_page import FindSweaterPage
+from pages.elements_page import RegistrateNewAccountPage
 
 
 class TestSweater:
@@ -12,3 +13,12 @@ class TestSweater:
             lll.append(item.text)
             print(item.text)
         assert '4 599 ₽' in lll
+
+
+class TestNewAccount:
+    def test_new_account(self, driver):
+        test_account = RegistrateNewAccountPage(driver, "https://befree.ru/")
+        test_account.open()
+        first_name, last_name, email, phone, birthday_day, password = test_account.create_new_account()
+        first_name, last_name, email, phone, birthday_day, password = test_account.check_filled_form()
+        print(test_account.check_filled_form())
